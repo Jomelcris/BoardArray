@@ -11,12 +11,22 @@ class BoardArray : public Board {
         BoardArray() {
             array = new Entry[SIZE];
             index = 0;
+
         }
 
         void add(Entry* entry) {
             // TODO: IMPLEMENT THIS FUNCTION
             // ALGORITHM IS PROVIDED IN INSTRUCTIONS.TXT
-            return;
+
+            for(int i = 0; i <SIZE; i++){
+                if(array[i].compare(entry)){
+                    for(int j = i + 1; j < SIZE; j++){
+                        array[j] = array[j - 1];
+                    }
+                }
+            }
+
+                return;
             
         }
 
