@@ -11,15 +11,32 @@ class BoardArray : public Board {
         BoardArray() {
             array = new Entry[SIZE];
             index = 0;
-
         }
 
         void add(Entry* entry) {
+            
             // TODO: IMPLEMENT THIS FUNCTION
             // ALGORITHM IS PROVIDED IN INSTRUCTIONS.TXT
+        if (index == 0) {
+        array[0] = *entry;
+        index++;
+        return;
+    }
 
-                return;
-        }
+    if (index == SIZE && entry->score <= array[index - 1].score) {
+        cout << entry->name << "'s score is too low to be added!" << endl;
+        return;
+    }
+    if (index < SIZE) {
+        index++;
+    }
+    int i = index - 1;
+    while (i > 0 && array[i - 1].score < entry->score) {
+        array[i] = array[i - 1]; 
+        i--;
+    }
+    array[i] = *entry;
+    }
 
         void print() {
             for (int i = 0; i < index; i++) {
@@ -27,4 +44,4 @@ class BoardArray : public Board {
                 array[i].print();
             }
         }
-};
+    };
